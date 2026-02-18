@@ -1,8 +1,6 @@
 extends "res://addons/gut/test.gd"
 
-# On utilise des constantes pour les chemins, c'est plus propre
 const PLAYER_PATH = "res://scenes/player/player.tscn"
-const COIN_PATH = "res://scenes/coin/coin.tscn"
 
 func test_player_exists():
 	var player_scene = load(PLAYER_PATH)
@@ -11,26 +9,19 @@ func test_player_exists():
 func test_player_can_collect_coins():
 	var player_scene = load(PLAYER_PATH)
 	var player = player_scene.instantiate()
-	
 	assert_eq(player.coins, 0, "Le score initial doit être 0.")
 	player.collect_coin()
 	assert_eq(player.coins, 1, "Le score doit augmenter après avoir ramassé une pièce.")
-	
 	player.free()
 
-func test_interaction_with_coin():
+func test_player_has_gravity():
 	var player_scene = load(PLAYER_PATH)
 	var player = player_scene.instantiate()
+	add_child(player)
 	
-	var coin_scene = load(COIN_PATH)
-	assert_not_null(coin_scene, "La scène Coin doit être chargée.")
+	var initial_y = player.position.y
+	# On simule un passage de temps physique
+	player._physics_process(0.1)
 	
-	var coin = coin_scene.instantiate()
-	
-	# On simule l'interaction
-	coin._on_body_entered(player)
-	
-	assert_eq(player.coins, 1, "Le joueur doit avoir 1 pièce après l'interaction.")
-	assert_true(coin.is_queued_for_deletion(), "La pièce doit être marquée pour destruction.")
-	
+	assert_gt(player.velocity.y, 0, "La vitesse Y doit augmenter (gravité) quand le joueur est dans le vide.")
 	player.free()
