@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6d7e8f9g0h1"]
+[gd_scene load_steps=3 format=3]
 [ext_resource type="Script" path="res://scenes/coin/coin.gd" id="1_script"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
