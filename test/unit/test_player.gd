@@ -19,3 +19,17 @@ func test_player_can_collect_coins():
 	assert_eq(player.coins, 1, "Le score doit augmenter après avoir ramassé une pièce.")
 	
 	player.free()
+
+func test_interaction_with_coin():
+	var player = PlayerScene.instantiate()
+	var coin_scene = load("res://scenes/coin/coin.tscn")
+	var coin = coin_scene.instantiate()
+	
+	# On simule l'entrée du joueur dans la pièce
+	coin._on_body_entered(player)
+	
+	assert_eq(player.coins, 1, "Le joueur doit avoir 1 pièce après l'interaction.")
+	assert_true(coin.is_queued_for_deletion(), "La pièce doit être marquée pour destruction.")
+	
+	player.free()
+	# Pas besoin de free(coin) car queue_free() s'en occupe
