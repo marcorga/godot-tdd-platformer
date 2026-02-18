@@ -26,3 +26,5 @@ position = Vector2(883, 462)
 
 [node name="Coin4" parent="." instance=ExtResource("4_kxwyo")]
 position = Vector2(957, 461)
+
+[connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
