@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://b1x2y304"]
+[gd_scene load_steps=5 format=3 uid="uid://b1x2y304"]
+
+[ext_resource type="PackedScene" uid="uid://c5y1w2x3y405" path="res://scenes/player/player.tscn" id="1_hkusf"]
+[ext_resource type="PackedScene" uid="uid://dvu0egdft4tm1" path="res://scenes/hud/hud.tscn" id="2_7iwtq"]
+[ext_resource type="PackedScene" uid="uid://cy8on110kyl46" path="res://scenes/environment/floor.tscn" id="3_wp5id"]
+[ext_resource type="PackedScene" uid="uid://b3e1ohorivbv3" path="res://scenes/coin/coin.tscn" id="4_kxwyo"]
 
 [node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_hkusf")]
+position = Vector2(390, 133)
+
+[node name="HUD" parent="." instance=ExtResource("2_7iwtq")]
+
+[node name="Floor" parent="." instance=ExtResource("3_wp5id")]
+position = Vector2(709, 576)
+
+[node name="Coin" parent="." instance=ExtResource("4_kxwyo")]
+position = Vector2(752, 449)
+
+[node name="Coin2" parent="." instance=ExtResource("4_kxwyo")]
+position = Vector2(812, 456)
+
+[node name="Coin3" parent="." instance=ExtResource("4_kxwyo")]
+position = Vector2(883, 462)
+
+[node name="Coin4" parent="." instance=ExtResource("4_kxwyo")]
+position = Vector2(957, 461)
